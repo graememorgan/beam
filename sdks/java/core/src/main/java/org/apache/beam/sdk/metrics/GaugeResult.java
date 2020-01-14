@@ -34,26 +34,9 @@ public abstract class GaugeResult {
     return new AutoValue_GaugeResult(value, timestamp);
   }
 
+  private static final GaugeResult EMPTY = create(-1, new Instant(0));
+
   public static GaugeResult empty() {
-    return EmptyGaugeResult.INSTANCE;
-  }
-
-  /** Empty {@link GaugeResult}, representing no values reported. */
-  public static class EmptyGaugeResult extends GaugeResult {
-
-    private static final EmptyGaugeResult INSTANCE = new EmptyGaugeResult();
-    private static final Instant EPOCH = new Instant(0);
-
-    private EmptyGaugeResult() {}
-
-    @Override
-    public long getValue() {
-      return -1L;
-    }
-
-    @Override
-    public Instant getTimestamp() {
-      return EPOCH;
-    }
+    return EMPTY;
   }
 }
